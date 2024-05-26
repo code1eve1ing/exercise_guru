@@ -1,0 +1,32 @@
+.ps-menu-button {
+  transition: all 0.2s ease-in-out !important;
+}
+.ps-menu-button:hover {
+  background-color: #cbd5e1 !important;
+}
+
+/* Sidebar css  */
+@media only screen and (max-width: 600px) {
+  .App {
+    flex-direction: column-reverse;
+  }
+  .css-rvqiw1 {
+    width: 100dvw !important;
+    height: auto !important;
+  }
+  .ps-menu-root ul {
+    display: flex;
+  }
+  .ps-menu-label {
+    display: none;
+  }
+
+  .ps-menuitem-root {
+    width: auto !important;
+  }
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
