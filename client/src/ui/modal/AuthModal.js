@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
     Modal,
@@ -21,20 +21,22 @@ const AuthModal = () => {
     const dispatch = useDispatch()
 
     const variant = "underlined"
+    const [isLoading, setIsLoading] = useState(false)
 
     const regName = useRef()
     const regEmail = useRef()
     const regPassword = useRef()
 
     const onRegister = async () => {
-
         const userData = {
             name: regName.current.value,
             email: regEmail.current.value,
             password: regPassword.current.value
         }
-
+        setIsLoading(true)
         const result = await apiHandler('POST', '/auth/signup', userData)
+        setIsLoading(false)
+
         if (result) {
             localStorage.setItem('Authorization', result.token)
             dispatch(setStats({ isAuthenticated: true }))
@@ -51,7 +53,10 @@ const AuthModal = () => {
             email: logEmail.current.value,
             password: logPassword.current.value
         }
+        setIsLoading(true)
         const result = await apiHandler('POST', '/auth/login', userData)
+        setIsLoading(false)
+
         if (result) {
             localStorage.setItem('Authorization', result.token)
             dispatch(setStats({ isAuthenticated: true }))
@@ -73,6 +78,7 @@ const AuthModal = () => {
                     <>
                         <ModalHeader className="flex flex-col gap-1">
                             <Tabs
+                                isDisabled={isLoading}
                                 aria-label="Options"
                                 key={"d"}
                                 variant={"light"}
@@ -120,6 +126,7 @@ const AuthModal = () => {
                                         </CardBody>
                                     </Card>
                                     <Button
+                                        isLoading={isLoading}
                                         onClick={onRegister}
                                         color="primary"
                                         className="w-full mt-6"
@@ -158,6 +165,7 @@ const AuthModal = () => {
                                         </CardBody>
                                     </Card>
                                     <Button
+                                        isLoading={isLoading}
                                         onClick={onLogin}
                                         color="primary"
                                         className="w-full mt-6"
