@@ -9,6 +9,7 @@ import store from './store'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Home from './component/Home';
 import Schedule from './component/Schedule';
+import Profile from './component/Profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "schedule",
         element: <Schedule />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

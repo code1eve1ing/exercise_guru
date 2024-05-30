@@ -13,6 +13,7 @@ const ExerciseCard = (props) => {
     const dispatch = useDispatch()
 
     const handleClick = () => {
+        console.log(authState)
         if (authState.isAuthenticated) {
             dispatch(setSelectedExercise(exercise))
             dispatch(showScheduleModal(true))

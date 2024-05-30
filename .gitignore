@@ -4,6 +4,10 @@
 client/node_modules/
 server/node_modules/
 
+# Ignore package-lock.json file in both client and server
+client/package-lock.json/
+server/package-lock.json/
+
 # Ignore build output directories
 client/build/
 client/dist/

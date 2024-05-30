@@ -28,12 +28,12 @@ authRouter.post('/signup', validate(signupSchema, false), async (req, res) => {
       const hash = bcrypt.hashSync(password, salt)
 
       // Save user details
-      const { _id } = await UserModel.create({ name, email, hash })
+      const { _id, } = await UserModel.create({ name, email, hash })
 
       // Generate JWT that expires after 1 month
-      const token = jwt.sign({ _id, email }, 'SECRET_KEY', { expiresIn: 3600 * 720 })
+      const token = jwt.sign({ _id, email, name }, 'SECRET_KEY', { expiresIn: 3600 * 720 })
 
-      res.send({ success: true, token })
+      res.send({ token, user: { name, email, id: _id } })
       return
 
    } catch (err) {
@@ -62,9 +62,9 @@ authRouter.post('/login', validate(loginSchema, false), async (req, res) => {
       if (!passwordMatch) return res.status(401).send({ message: 'Anauthorized Access' })
 
       // Generate JWT that expires after 1 month
-      const token = jwt.sign({ _id: user._id, email }, 'SECRET_KEY', { expiresIn: 3600 * 720 })
+      const token = jwt.sign({ _id: user._id, email, name: user.name }, 'SECRET_KEY', { expiresIn: 3600 * 720 })
 
-      const userData = { name : user.name, email: user.email, _id: user._id}
+      const userData = { name: user.name, email: user.email, _id: user._id }
       const schedules = await Schedule.find({ user_id: user._id })
       res.send({ success: true, token, user: userData, schedules })
       return

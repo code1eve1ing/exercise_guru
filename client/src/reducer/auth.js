@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 const initialState = {
   isAuthenticated: false,
-  user: { name: "", email: "" },
+  user: { id: "", name: "", email: "" }
 }
 
 const authReducer = (state = initialState, action) => {
@@ -15,20 +15,21 @@ const authReducer = (state = initialState, action) => {
 
     case "SET_USER":
 
-      const { _id = '', name = '', email = '' } = action.payload
+      const { id = '', name = '', email = '' } = action.payload
       return {
         ...state,
         user: {
           ...state.user,
-          _id,
+          id,
           name,
           email
         },
       }
 
-    case 'SET_STATS':
+    case 'SET_IS_AUTHENTICATED':
 
-      const { isAuthenticated } = action.payload
+      const isAuthenticated = action.payload
+      console.log(isAuthenticated)
       return {
         ...state,
         isAuthenticated

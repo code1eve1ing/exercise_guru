@@ -1,11 +1,12 @@
 import React from 'react'
 import { Sidebar as SidebarPro, Menu, MenuItem } from 'react-pro-sidebar';
-import { FaHome, FaList } from "react-icons/fa";
+import { FaHome, FaList, FaUser } from "react-icons/fa";
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 const Sidebar = () => {
 
     const scheduleState = useSelector(state => state.exercise)
+    const Auth = useSelector(state => state.auth)
     const navigate = useNavigate()
     const navigateTo = path => navigate(path)
     const pathname = window.location.pathname
@@ -29,10 +30,15 @@ const Sidebar = () => {
                     },
                 }}>
 
-                <MenuItem  active={pathname==='/'} onClick={() => navigateTo('/')} icon={<FaHome />}> Home</MenuItem>
+                <MenuItem active={pathname === '/'} onClick={() => navigateTo('/')} icon={<FaHome />}> Home</MenuItem>
                 {
                     scheduleState.schedules.length > 0
-                    && <MenuItem  active={pathname.includes('/schedule')}onClick={() => navigateTo('/schedule')} icon={<FaList />}>Schedules</MenuItem>
+                    && <MenuItem active={pathname.includes('/schedule')} onClick={() => navigateTo('/schedule')} icon={<FaList />}>Schedules</MenuItem>
+                }
+                {
+                    Auth.user.id
+                    && <MenuItem active={pathname.includes('/profile')} onClick={() => navigateTo('/profile')} icon={<FaUser />}>Profile</MenuItem>
+
                 }
 
             </Menu>

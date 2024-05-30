@@ -13,7 +13,7 @@ export const setStats = stats => ({
     payload: stats
 })
 
-export const stopAction = {
-    type: "rotate",
-    payload: false
-};
+export const setIsAuthenticated = isAuthenticated => ({
+    type: 'SET_IS_AUTHENTICATED',
+    payload: isAuthenticated
+})

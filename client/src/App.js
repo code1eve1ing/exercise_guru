@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { showLoginModal } from "./action/modal"
 import apiHandler from "./api/apiHandler"
-import { setStats, setUser } from "./action/auth"
+import { setIsAuthenticated, setUser } from "./action/auth"
 import { setSchedules } from "./action/exercise"
 import ModalHandler from "./component/ModalHandler"
 
@@ -25,8 +25,9 @@ function App() {
         if (!authStats.isAuthenticated) {
           dispatch(showLoginModal(true))
         } else {
-          dispatch(setStats({ isAuthenticated: true }))
-          dispatch(setUser(authStats.user))
+          const { _id, name, email } = authStats.user
+          dispatch(setIsAuthenticated(true))
+          dispatch(setUser({ id: _id, name, email }))
           dispatch(setSchedules(authStats.schedules))
         }
 
