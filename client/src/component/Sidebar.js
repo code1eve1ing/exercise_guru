@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 const Sidebar = () => {
 
-    const scheduleState = useSelector(state => state.exercise)
+    const Exercise = useSelector(state => state.exercise)
     const Auth = useSelector(state => state.auth)
     const navigate = useNavigate()
     const navigateTo = path => navigate(path)
@@ -32,7 +32,7 @@ const Sidebar = () => {
 
                 <MenuItem active={pathname === '/'} onClick={() => navigateTo('/')} icon={<FaHome />}> Home</MenuItem>
                 {
-                    scheduleState.schedules.length > 0
+                    Exercise.schedules.length > 0
                     && <MenuItem active={pathname.includes('/schedule')} onClick={() => navigateTo('/schedule')} icon={<FaList />}>Schedules</MenuItem>
                 }
                 {

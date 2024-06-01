@@ -14,7 +14,7 @@ import apiHandler from '../../api/apiHandler'
 import { setIsAuthenticated, setStats, setUser } from '../../action/auth'
 import { showLoginModal } from '../../action/modal'
 import { setSchedules } from '../../action/exercise'
-import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 
 const AuthModal = () => {
 
@@ -59,7 +59,7 @@ const AuthModal = () => {
 
         if (result) {
             localStorage.setItem('Authorization', result.token)
-            dispatch(setStats({ isAuthenticated: true }))
+            dispatch(setIsAuthenticated(true))
             dispatch(setUser(result.user))
             dispatch(setSchedules(result.schedules))
             dispatch(showLoginModal(false))

@@ -64,7 +64,7 @@ authRouter.post('/login', validate(loginSchema, false), async (req, res) => {
       // Generate JWT that expires after 1 month
       const token = jwt.sign({ _id: user._id, email, name: user.name }, 'SECRET_KEY', { expiresIn: 3600 * 720 })
 
-      const userData = { name: user.name, email: user.email, _id: user._id }
+      const userData = { name: user.name, email: user.email, id: user._id }
       const schedules = await Schedule.find({ user_id: user._id })
       res.send({ success: true, token, user: userData, schedules })
       return
