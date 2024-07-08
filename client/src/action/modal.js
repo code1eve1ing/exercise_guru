@@ -7,3 +7,8 @@ export const showScheduleModal = (showModal)=>({
     type:'SHOW_SCHEDULE_MODAL',
     payload: showModal
 })
+
+export const showExercisePlayerModal = (showModal)=>({
+    type:'SHOW_EXERCISE_PLAYER_MODAL',
+    payload: showModal
+})

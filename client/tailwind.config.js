@@ -20,11 +20,11 @@ module.exports = {
       light: {
         colors: {
           secondary: {
-            foreground: "#00000",
+            foreground: "#000000",
             DEFAULT: "#f1f5f9",
           },
           success: {
-            foreground: "#00000",
+            foreground: "#000000",
             DEFAULT: "#d9f99d",
           },
           // ... rest of the colors

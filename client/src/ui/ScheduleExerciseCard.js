@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Chip, CardHeader, Image, Input } from "@nextui-org/react"
+import { Card, Chip, CardHeader, Input } from "@nextui-org/react"
 import { FaSyncAlt } from 'react-icons/fa';
 import { updatedSchedule } from '../action/exercise';
 import { useDispatch } from 'react-redux'
@@ -47,8 +47,8 @@ const ScheduleExerciseCard = (props) => {
                         <p className='pr-2'>{exercise.name}</p>
                     </div>
                     <div className="flex w-[60vw] overflow-x-auto pb-1">
-                        <Chip color="secondary" size='sm' className='mr-1'><p className="text-xs flex items-center justify-center font-mono">{exercise.target}</p></Chip>
-                        {exercise.secondaryMuscles.map(muscle => <Chip color="default" size='sm' className='mr-1'><p className="text-xs flex items-center justify-center font-mono">{muscle}</p></Chip>)}
+                        <Chip color="success" size='sm' className='mr-1'><p className="text-xs flex items-center justify-center font-mono">{exercise.target}</p></Chip>
+                        {exercise.secondaryMuscles.map(muscle => <Chip color="secondary" size='sm' className='mr-1'><p className="text-xs flex items-center justify-center font-mono">{muscle}</p></Chip>)}
                     </div>
                     <div className="flex mt-3 items-center">
                         <FaSyncAlt onClick={() => setPreference(prev => {
@@ -73,10 +73,9 @@ const ScheduleExerciseCard = (props) => {
                 </div>
 
                 <div className="flex-none pl-3 border-l-gray-300 border-l-2">
-                    <Image
+                    <img
                         alt="nextui logo"
                         width={100}
-                        radius="sm"
                         src={exercise.gifUrl}
                     />
                 </div>

@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react"
 import { Tabs, Tab } from "@nextui-org/tabs"
 import apiHandler from '../../api/apiHandler'
-import { setIsAuthenticated, setStats, setUser } from '../../action/auth'
+import { setIsAuthenticated, setUser } from '../../action/auth'
 import { showLoginModal } from '../../action/modal'
 import { setSchedules } from '../../action/exercise'
 import { useForm, Controller } from "react-hook-form"
@@ -47,8 +47,8 @@ const AuthModal = () => {
     }
 
     const onSubmit = (data) => {
-        const { email, password}= data
-        selected==='signup' ? onRegister(data) : onLogin({email, password})
+        const { email, password } = data
+        selected === 'signup' ? onRegister(data) : onLogin({ email, password })
     }
 
     const onLogin = async (userData) => {
@@ -103,6 +103,7 @@ const AuthModal = () => {
                                                     render={({ field }) => <Input
                                                         {...field}
                                                         className="text-slate-300"
+                                                        isDisabled={isLoading}
                                                         color="primary"
                                                         type="text"
                                                         variant={variant}
@@ -127,6 +128,7 @@ const AuthModal = () => {
                                                 render={({ field }) => <Input
                                                     {...field}
                                                     className="text-slate-300"
+                                                    isDisabled={isLoading}
                                                     color="primary"
                                                     type="text"
                                                     variant={variant}
@@ -145,12 +147,13 @@ const AuthModal = () => {
                                                     required: true,
                                                     minLength: {
                                                         value: 8,
-                                                        message: 'Username must be at least 8 characters long.'
+                                                        message: 'Password must be at least 8 characters long.'
                                                     }
                                                 }}
                                                 render={({ field }) => <Input
                                                     {...field}
                                                     className="text-slate-300"
+                                                    isDisabled={isLoading}
                                                     color="primary"
                                                     type="password"
                                                     variant={variant}

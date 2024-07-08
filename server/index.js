@@ -3,14 +3,15 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const configRoute = require('./util/global/configRoute')
+require('dotenv').config();
+const mongoose = require('mongoose')
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.client,
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }
-const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://sanketMistry:RUcKBBwkwjMGc8ID@clusterio.7tutlrm.mongodb.net/Exercise_Guru?retryWrites=true&w=majority&appName=ClusterIO')
+mongoose.connect(process.env.mongo_url)
     .then(()=>console.log('mongodb connected'))
     .catch(err=>console.log(err))
 

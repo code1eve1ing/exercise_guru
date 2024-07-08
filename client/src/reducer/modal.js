@@ -1,6 +1,7 @@
 const initialState = {
     showLoginModal: false,
-    showScheduleModal: false
+    showScheduleModal: false,
+    showExercisePlayerModal: false
 }
 
 const modalReducer = (state = initialState, action) => {
@@ -16,6 +17,12 @@ const modalReducer = (state = initialState, action) => {
                 showScheduleModal: action.payload
             }
 
+        case "SHOW_EXERCISE_PLAYER_MODAL":
+            console.log('ye buddy')
+            return {
+                showExercisePlayerModal: action.payload
+            }
+            
         default:
             return state;
     }

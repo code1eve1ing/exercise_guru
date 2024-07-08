@@ -10,8 +10,34 @@ const ThirdPartyExercise = require('../model/thirdPartyExercise');
 
 exerciseRouter.get('/', async (req, res) => {
   try {
-    const exercises = await ThirdPartyExercise.findOne({})
-      res.send(exercises.list.slice(10, 30))
+    const { search } = req.query
+
+    let query = [
+      {
+        $project: {
+          list: { $slice: ["$list", 20] }
+        }
+      }
+    ]
+    if (search) {
+      query = [
+        {
+          $project: {
+            list: {
+              $filter: {
+                input: "$list",
+                as: "list",
+                cond: { $regexMatch: { input: "$$list.name", regex: new RegExp(search, 'i') } }
+              }
+            }
+          }
+        }
+        , ...query
+      ]
+    }
+
+    const exercises = await ThirdPartyExercise.aggregate(query)
+    res.send(exercises[0].list)
     res.end()
   } catch (error) {
     console.log(error)

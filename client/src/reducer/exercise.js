@@ -2,7 +2,8 @@
 const initialState = {
     exercises: [],
     schedules: [],
-    selectedExercise: {}
+    selectedExercise: {},
+    activeSchedule: {}
 }
 
 const authReducer = (state = initialState, action) => {
@@ -74,6 +75,16 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 schedules
+            }
+
+        case 'SET_ACTIVE_SCHEDULE':
+
+            let activeSchedule = action.payload
+            console.log(activeSchedule)
+
+            return {
+                ...state,
+                activeSchedule
             }
 
         default:

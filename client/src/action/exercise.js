@@ -27,3 +27,8 @@ export const updatedSchedule = schedule => ({
     type: 'UPDATE_SCHEDULE',
     payload: schedule
 })
+
+export const setActiveSchedule = schedule => ({
+    type: 'SET_ACTIVE_SCHEDULE',
+    payload: schedule
+})

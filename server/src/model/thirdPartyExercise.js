@@ -5,6 +5,10 @@ const thirdPartyExercise = new Schema({
     list: {
         type: Array,
         required: true
+    },
+    list_v2: {
+        type: Array,
+        required: true
     }
 })
 
