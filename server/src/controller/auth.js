@@ -85,7 +85,7 @@ authRouter.get('/stats', async (req, res) => {
 
       const schedules = await Schedule.find({ user_id: user._id })
 
-      res.send({ isAuthenticated: true, user: user, schedules })
+      res.status(200).send({ isAuthenticated: true, user: user, schedules })
       return
 
    } catch (err) {
