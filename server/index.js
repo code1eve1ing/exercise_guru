@@ -6,9 +6,7 @@ const configRoute = require('./util/global/configRoute')
 require('dotenv').config();
 const mongoose = require('mongoose')
 const corsOptions = {
-    origin: process.env.client,
-    credentials: true,            //access-control-allow-credentials:true
-    optionSuccessStatus: 200
+    origin: process.env.client
 }
 
 mongoose.connect(process.env.mongo_url)
