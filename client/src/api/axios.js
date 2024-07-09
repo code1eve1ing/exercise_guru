@@ -14,6 +14,7 @@ axiosInstance.interceptors.request.use(
 
         const token = localStorage.getItem('Authorization')
         config.headers['Authorization'] = token ? token : ''
+        config.headers['Access-Control-Allow-Origin'] = '*'
         return config
 
     },
