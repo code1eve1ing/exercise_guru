@@ -5,8 +5,10 @@ const app = express()
 const configRoute = require('./util/global/configRoute')
 require('dotenv').config();
 const mongoose = require('mongoose')
+console.log('Client origin :', process.env.client)
 const corsOptions = {
-    origin: process.env.client
+    origin: process.env.client,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }
 
 mongoose.connect(process.env.mongo_url)
