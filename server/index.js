@@ -8,7 +8,8 @@ const mongoose = require('mongoose')
 console.log('Client origin :', process.env.client)
 const corsOptions = {
     origin: process.env.client,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization']
 }
 
 mongoose.connect(process.env.mongo_url)
