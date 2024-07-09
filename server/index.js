@@ -17,6 +17,7 @@ mongoose.connect(process.env.mongo_url)
     .catch(err=>console.log(err))
 
 app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
 // Allows to send json data from client to server
 app.use(express.json())
 
