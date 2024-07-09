@@ -14,7 +14,9 @@ mongoose.connect(process.env.mongo_url)
 // Allows to send json data from client to server
 app.use(express.json())
 app.use(cors({
-    origin: 'https://exercise-guru.vercel.app'
+    origin: 'https://exercise-guru.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    optionsSuccessStatus: 204
 }));
 app.options('*', cors(corsOptions));
 app.listen(port, () => {
