@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(cors({
     origin: 'https://exercise-guru.vercel.app'
 }));
-
+app.options('*', cors(corsOptions));
 app.listen(port, () => {
     console.log('Server started on port :', port)
 })
