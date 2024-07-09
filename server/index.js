@@ -16,7 +16,7 @@ app.use(cors())
 // Allows to send json data from client to server
 app.use(express.json())
 
-app.listen(port, 'localhost', () => {
+app.listen(port, () => {
     console.log('Server started on port :', port)
 })
 
