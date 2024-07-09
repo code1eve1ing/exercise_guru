@@ -1,7 +1,8 @@
 import axiosInstance from './axios'
 
 const apiHandler = async (method, url, data = null) => {
-
+    console.log('apI HANDLER')
+    console.log(process.env.REACT_APP_SERVER)
     const result = await axiosInstance(
         {
             method,
