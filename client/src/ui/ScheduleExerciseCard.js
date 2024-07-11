@@ -32,7 +32,6 @@ const ScheduleExerciseCard = (props) => {
     }
 
     useEffect(() => {
-        console.log('useEffect called...')
         setPreference(exercise.interval ? exercise.interval.preference : 'hold')
         setHold(exercise.interval && exercise.interval.hold ? exercise.interval.hold : 20)
         setSet(exercise.interval && exercise.interval.set ? exercise.interval.set : 3)
