@@ -16,7 +16,7 @@ const validate = (schema = {}, validateJWT = true) => (req, res, next) => {
         // Validate payload
         if (!_.isEmpty(schema)) {
             const result = v.safeParse(schema, req.body)
-            if (!result.success) return res.send(result.issues)
+            if (!result.success) return res.send(result.issues).end()
         }
 
         next()

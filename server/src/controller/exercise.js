@@ -37,10 +37,8 @@ exerciseRouter.get('/', async (req, res) => {
     }
 
     const exercises = await ThirdPartyExercise.aggregate(query)
-    res.send(exercises[0].list)
-    res.end()
+    res.send(exercises[0].list).end()
   } catch (error) {
-    console.log(error)
     res.send(error)
   }
 })
@@ -65,10 +63,7 @@ exerciseRouter.post('/schedule', validate(scheduleSchema), (async (req, res) => 
     const { name, exercise } = req.body
 
     const schedule = await Schedule.create({ name, exercises: [exercise], user_id: user._id })
-
-    res.send(schedule)
-    return
-
+    res.send(schedule).end()
   } catch (error) {
     res.send(error)
   }

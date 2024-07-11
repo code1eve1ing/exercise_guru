@@ -14,8 +14,6 @@ function App() {
   const state = useSelector((state) => state)
   const { auth } = state
   const dispatch = useDispatch()
-  console.log(process.env)
-  console.log(process.env.REACT_APP_SERVER)
   useEffect(() => {
 
     if (!auth.isAuthenticated) {

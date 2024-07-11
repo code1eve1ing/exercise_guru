@@ -33,9 +33,7 @@ authRouter.post('/signup', validate(signupSchema, false), async (req, res) => {
       // Generate JWT that expires after 1 month
       const token = jwt.sign({ _id, email, name }, 'SECRET_KEY', { expiresIn: 3600 * 720 })
 
-      res.send({ token, user: { name, email, id: _id } })
-      return
-
+      res.send({ token, user: { name, email, id: _id } }).end()
    } catch (err) {
 
       res.status(500).send({ message: 'Internal Server Error', error: err.message })
@@ -66,9 +64,7 @@ authRouter.post('/login', validate(loginSchema, false), async (req, res) => {
 
       const userData = { name: user.name, email: user.email, id: user._id }
       const schedules = await Schedule.find({ user_id: user._id })
-      res.send({ success: true, token, user: userData, schedules })
-      return
-
+      res.send({ success: true, token, user: userData, schedules }).end()
    } catch (err) {
 
       res.send(err)
@@ -85,9 +81,7 @@ authRouter.get('/stats', async (req, res) => {
 
       const schedules = await Schedule.find({ user_id: user._id })
 
-      res.status(200).send({ isAuthenticated: true, user: user, schedules })
-      return
-
+      res.status(200).send({ isAuthenticated: true, user: user, schedules }).end()
    } catch (err) {
 
       res.send({ isAuthenticated: false })

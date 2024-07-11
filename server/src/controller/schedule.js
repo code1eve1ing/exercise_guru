@@ -25,10 +25,7 @@ scheduleRouter.post('/', validate(scheduleSchema), (async (req, res) => {
         const { name, exercise } = req.body
 
         const schedule = await Schedule.create({ name, exercises: [exercise], user_id: user._id })
-
-        res.send(schedule)
-        return
-
+        res.send(schedule).end()
     } catch (error) {
         res.send(error)
     }
@@ -55,9 +52,7 @@ scheduleRouter.post('/exercise', validate(addExerciseSchema), (async (req, res) 
         const { schedule_id, exercise } = req.body
 
         const updatedSchedule = await Schedule.findOneAndUpdate({ _id: schedule_id }, { $push: { exercises: exercise } }, { new: true })
-        res.send(updatedSchedule)
-        return
-
+        res.send(updatedSchedule).end()
     } catch (error) {
         res.send(error)
     }
@@ -66,9 +61,7 @@ scheduleRouter.post('/exercise', validate(addExerciseSchema), (async (req, res) 
 
 scheduleRouter.post('/exercise/interval', (async (req, res) => {
     try {
-        console.log('incoming rq...')
         const { scheduleId, exerciseId, key, value } = req.body
-
         const updateObject = {}
 
         if (value) updateObject[`exercises.$.interval.${key}`] = value
@@ -80,8 +73,7 @@ scheduleRouter.post('/exercise/interval', (async (req, res) => {
             { new: true }
         )
 
-        res.send(updatedSchedule)
-        return
+        res.send(updatedSchedule).end()
     } catch (error) {
         console.log(error)
         res.send(error)

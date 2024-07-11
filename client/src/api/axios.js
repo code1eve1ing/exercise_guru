@@ -14,7 +14,10 @@ axiosInstance.interceptors.request.use(
 
         const token = localStorage.getItem('Authorization')
         config.headers['Authorization'] = token ? token : ''
-        config.headers['Access-Control-Allow-Origin'] = '*'
+        // CORS-related headers
+        config.headers['Access-Control-Allow-Origin'] = '*';
+        config.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
+        config.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization';
         return config
 
     },
