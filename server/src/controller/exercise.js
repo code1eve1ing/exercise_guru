@@ -36,6 +36,27 @@ exerciseRouter.get('/', async (req, res) => {
       ]
     }
 
+
+    const options = {
+      method: 'GET',
+      url: 'https://exercisedb.p.rapidapi.com/exercises',
+      params: {
+        limit: '2000',
+        offset: '0'
+      },
+      headers: {
+        'x-rapidapi-key': '667ec46141msh73f84530c4fb3a4p15f216jsn1e07fac1b0b7',
+        'x-rapidapi-host': 'exercisedb.p.rapidapi.com'
+      }
+    };
+
+    try {
+      const response = await axios.request(options);
+      await ThirdPartyExercise.findOneAndUpdate({_id:'66515e5feb084ab6f49f5631'}, {list: response.data})
+    } catch (error) {
+      console.error(error);
+    }
+
     const exercises = await ThirdPartyExercise.aggregate(query)
     res.send(exercises[0].list).end()
   } catch (error) {

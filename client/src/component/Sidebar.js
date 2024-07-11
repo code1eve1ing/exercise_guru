@@ -13,7 +13,7 @@ const Sidebar = () => {
 
     return (
         <SidebarPro
-            collapsed={true}
+            collapsed={window.screen.width < 768 ? true : false}
             className='h-dvh z-50'
             backgroundColor='#e2e8f0'
             rootStyles={{ color: '#e5e5e5' }}>
@@ -30,7 +30,7 @@ const Sidebar = () => {
                     },
                 }}>
 
-                <MenuItem active={pathname === '/'} onClick={() => navigateTo('/')} icon={<FaHome />}> Home</MenuItem>
+                <MenuItem active={pathname === '/'} onClick={() => navigateTo('/')} icon={<FaHome />}>Home</MenuItem>
                 {
                     Exercise.schedules.length > 0
                     && <MenuItem active={pathname.includes('/schedule')} onClick={() => navigateTo('/schedule')} icon={<FaList />}>Schedules</MenuItem>

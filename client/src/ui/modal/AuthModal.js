@@ -69,7 +69,7 @@ const AuthModal = () => {
     return (
         <Modal
             isOpen={modal.showLoginModal}
-            placement="center-center"
+            placement="center"
             hideCloseButton={true}
             className="bg-gray-900"
         >

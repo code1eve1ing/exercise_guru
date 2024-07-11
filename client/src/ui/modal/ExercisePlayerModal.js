@@ -56,7 +56,6 @@ const ExercisePlayerModal = () => {
     useEffect(() => {
         // Update interval (hold, set, rep) info on each exercise completion
         if (exercises && exercises.length > 0) {
-            console.log('Next exercise')
             const interval = exercises[index].interval
             if (interval) {
                 setPreference(interval.preference)
@@ -74,7 +73,7 @@ const ExercisePlayerModal = () => {
     return (
         <Modal
             isOpen={ModalState.showExercisePlayerModal}
-            placement="center-center"
+            placement="center"
             className="bg-slate-100 mt-10"
             hideCloseButton={true}
             size="lg"

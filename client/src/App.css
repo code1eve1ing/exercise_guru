@@ -24,6 +24,10 @@
   .ps-menuitem-root {
     width: auto !important;
   }
+  
+  .ps-menu-icon {
+    margin: 0 !important;
+  }
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

@@ -80,10 +80,8 @@ authRouter.get('/stats', async (req, res) => {
       const user = jwt.verify(token, 'SECRET_KEY')
 
       const schedules = await Schedule.find({ user_id: user._id })
-
       res.status(200).send({ isAuthenticated: true, user: user, schedules }).end()
    } catch (err) {
-
       res.send({ isAuthenticated: false })
       return
 

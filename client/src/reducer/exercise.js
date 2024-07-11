@@ -80,7 +80,6 @@ const authReducer = (state = initialState, action) => {
         case 'SET_ACTIVE_SCHEDULE':
 
             let activeSchedule = action.payload
-            console.log(activeSchedule)
 
             return {
                 ...state,

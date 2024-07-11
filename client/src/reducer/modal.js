@@ -18,7 +18,6 @@ const modalReducer = (state = initialState, action) => {
             }
 
         case "SHOW_EXERCISE_PLAYER_MODAL":
-            console.log('ye buddy')
             return {
                 showExercisePlayerModal: action.payload
             }

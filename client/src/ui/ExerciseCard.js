@@ -13,7 +13,6 @@ const ExerciseCard = (props) => {
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        console.log(authState)
         if (authState.isAuthenticated) {
             dispatch(setSelectedExercise(exercise))
             dispatch(showScheduleModal(true))
@@ -27,7 +26,7 @@ const ExerciseCard = (props) => {
     }
 
     return (
-        <Card className="max-w-[400px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 m-3">
+        <Card className="max-w-[230px] md:max-w-[400px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 m-3">
             <CardHeader className="flex gap-3">
                 <div className="flex flex-col w-full">
                     <div className="text-md mb-1 flex items-baseline justify-between">

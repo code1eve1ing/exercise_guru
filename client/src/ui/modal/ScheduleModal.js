@@ -91,7 +91,7 @@ const ScheduleModal = () => {
     return (
         <Modal
             isOpen={modal.showScheduleModal}
-            placement="center-center"
+            placement="center"
             hideCloseButton={true}
             className="bg-gray-900"
         >

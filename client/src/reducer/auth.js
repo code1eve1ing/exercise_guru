@@ -29,7 +29,6 @@ const authReducer = (state = initialState, action) => {
     case 'SET_IS_AUTHENTICATED':
 
       const isAuthenticated = action.payload
-      console.log(isAuthenticated)
       return {
         ...state,
         isAuthenticated
