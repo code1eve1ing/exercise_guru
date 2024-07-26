@@ -67,9 +67,13 @@ authRouter.post('/login', validate(loginSchema, false), async (req, res) => {
 authRouter.get('/stats', async (req, res) => {
    try {
       const token = req.get('Authorization')
-      const user = jwt.verify(token, 'SECRET_KEY')
-      const schedules = await Schedule.find({ user_id: user._id })
-      successResponse(res, { isAuthenticated: true, user: user, schedules })
+      if (token) {
+         const user = jwt.verify(token, 'SECRET_KEY')
+         const schedules = await Schedule.find({ user_id: user._id })
+         successResponse(res, { isAuthenticated: true, user: user, schedules })
+      } else {
+         successResponse(res, { isAuthenticated: false })
+      }
       return
    } catch (err) {
       errorResponse(res, err)

@@ -14,13 +14,11 @@ function App() {
   const state = useSelector((state) => state)
   const { auth } = state
   const dispatch = useDispatch()
+
   useEffect(() => {
-
     if (!auth.isAuthenticated) {
-
       const fetchAuthStatus = async () => {
         const authStats = await apiHandler('GET', '/auth/stats')
-
         if (!authStats.isAuthenticated) {
           dispatch(showLoginModal(true))
         } else {
@@ -29,13 +27,10 @@ function App() {
           dispatch(setUser({ id: _id, name, email }))
           dispatch(setSchedules(authStats.schedules))
         }
-
       }
       fetchAuthStatus()
-
     }
-  }
-    , [auth.isAuthenticated, dispatch])
+  }, [auth.isAuthenticated, dispatch])
 
   return (
     <div className="App flex h-dvh overflow-hidden ">
