@@ -44,7 +44,6 @@ function App() {
         <Outlet />
       </div>
       <ModalHandler />
-
     </div>
   )
 }

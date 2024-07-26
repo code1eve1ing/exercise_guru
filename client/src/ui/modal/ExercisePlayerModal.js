@@ -42,6 +42,9 @@ const ExercisePlayerModal = () => {
             setIsWorkoutEnded(true)
             setIsTimerActive(false)
             setTimeout(() => {
+                setIndex(0)
+                setIsWorkoutStarted(false)
+                setIsWorkoutEnded(false)
                 dispatch(showExercisePlayerModal(false))
             }, 2000);
         }

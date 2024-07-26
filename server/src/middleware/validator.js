@@ -2,10 +2,10 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const _ = require('lodash')
 const v = require('valibot')
+const { errorResponse } = require('../../util/global/response')
 
 const validate = (schema = {}, validateJWT = true) => (req, res, next) => {
     try {
-
         // Validate JWT
         if (validateJWT) {
             const token = req.get('Authorization')
@@ -18,14 +18,10 @@ const validate = (schema = {}, validateJWT = true) => (req, res, next) => {
             const result = v.safeParse(schema, req.body)
             if (!result.success) return res.send(result.issues).end()
         }
-
         next()
-
     } catch (err) {
-
-        res.status(500).send({ message: 'Internal Server Error', error: err.message })
+        errorResponse(res, err)
         return
-
     }
 }
 

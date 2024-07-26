@@ -1,27 +1,19 @@
-const port = 5000
 const express = require('express')
 const cors = require('cors')
-const app = express()
+const mongoose = require('mongoose')
 const configRoute = require('./util/global/configRoute')
 require('dotenv').config();
-const mongoose = require('mongoose')
-
-
-app.use(cors())
-
-// Allows to send json data from client to server
-app.use(express.json())
+const app = express()
 
 mongoose.connect(process.env.mongo_url)
     .then(() => console.log('mongodb connected'))
     .catch(err => console.log(err))
 
+app.use(cors())
+app.use(express.json())
+configRoute(app)
+
 app.listen(process.env.port, () => {
     console.log('Server started on port :', process.env.port)
 })
 
-app.get('/', (req, res) => {   
-    res.send('Hello, world').end()
-});
-
-configRoute(app)

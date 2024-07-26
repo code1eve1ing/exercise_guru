@@ -4,6 +4,7 @@ const v = require('valibot')
 const { string, array, object } = require('valibot')
 const Schedule = require('../model/schedule')
 const { validate } = require('../middleware/validator')
+const { successResponse, errorResponse } = require('../../util/global/response')
 
 const scheduleSchema = object({
     name: string(),
@@ -23,13 +24,13 @@ scheduleRouter.post('/', validate(scheduleSchema), (async (req, res) => {
     try {
         const user = req.user
         const { name, exercise } = req.body
-
         const schedule = await Schedule.create({ name, exercises: [exercise], user_id: user._id })
-        res.send(schedule).end()
-    } catch (error) {
-        res.send(error)
+        successResponse(res, schedule)
+        return
+    } catch (err) {
+        errorResponse(res, err)
+        return
     }
-
 }))
 
 const addExerciseSchema = object({
@@ -50,20 +51,19 @@ scheduleRouter.post('/exercise', validate(addExerciseSchema), (async (req, res) 
     try {
         const user = req.user
         const { schedule_id, exercise } = req.body
-
         const updatedSchedule = await Schedule.findOneAndUpdate({ _id: schedule_id }, { $push: { exercises: exercise } }, { new: true })
-        res.send(updatedSchedule).end()
-    } catch (error) {
-        res.send(error)
+        successResponse(res, updatedSchedule)
+        return
+    } catch (err) {
+        errorResponse(res, err)
+        return
     }
-
 }))
 
 scheduleRouter.post('/exercise/interval', (async (req, res) => {
     try {
         const { scheduleId, exerciseId, key, value } = req.body
         const updateObject = {}
-
         if (value) updateObject[`exercises.$.interval.${key}`] = value
         updateObject['exercises.$.interval.preference'] = key
 
@@ -72,13 +72,12 @@ scheduleRouter.post('/exercise/interval', (async (req, res) => {
             { $set: updateObject },
             { new: true }
         )
-
-        res.send(updatedSchedule).end()
-    } catch (error) {
-        console.log(error)
-        res.send(error)
+        successResponse(res, updatedSchedule)
+        return
+    } catch (err) {
+        errorResponse(res, err)
+        return
     }
-
 }))
 
 module.exports = scheduleRouter
